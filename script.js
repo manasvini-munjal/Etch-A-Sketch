@@ -3,6 +3,15 @@ const GRID_CONTAINER_SIZE = 960;
 const container = document.querySelector('.container');
 
 
+const getRandomColor = () => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for(let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
 const createGrid = (gridSize) => {
     const squareSize = `${GRID_CONTAINER_SIZE/gridSize}px`;
     container.setAttribute('style', `grid-template-columns:repeat(${gridSize}, 0fr)`)
@@ -12,12 +21,12 @@ const createGrid = (gridSize) => {
       grid.style.width = `${squareSize}`;
       grid.style.height = `${squareSize}`;
 
-      grid.addEventListener('mouseover', () => {grid.style.background = 'red'});
-      grid.addEventListener('mouseout', () => {grid.style.background = 'transparent'});
+      grid.addEventListener('mouseover', () => {grid.style.background = getRandomColor()});
+     // grid.addEventListener('mouseout', () => {grid.style.background = 'transparent'});
       container.appendChild(grid);
     }
 }
-40
+
 const clearGrid = () => {
     const grids = document.querySelectorAll('.grid');
     if (grids) {
